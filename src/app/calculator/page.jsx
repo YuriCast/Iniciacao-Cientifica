@@ -1,8 +1,9 @@
 import React from 'react'
+import styles from './page.module.css'
 
 const Calculator = () => {
   return (
-    <div>Calculadora</div>
+    <div className={styles.container}>Calculadora</div>
   )
 }
 

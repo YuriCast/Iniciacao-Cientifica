@@ -1,8 +1,9 @@
 import React from 'react'
+import styles from './page.module.css'
 
 const About = () => {
   return (
-    <div>Sobre</div>
+    <div className={styles.container}>Sobre</div>
   )
 }
 
