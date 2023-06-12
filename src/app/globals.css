@@ -8,7 +8,7 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  background-color: #111;
+  background-color: #14023B;
   color: #bbb;
 }
 
@@ -25,5 +25,4 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #14023B;
 }
