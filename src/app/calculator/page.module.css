@@ -1,1 +1,33 @@
-.container {}
+.main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 500px;
+}
+
+.item1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(to bottom, #45189270, #29166200);
+    width: 450px;
+    height: 500px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #451892;
+    border-radius: 8px;
+}
+
+.titulo {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.input {
+    width: 350px;
+    height: 60px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    background-color: #34008C70;
+}
+
