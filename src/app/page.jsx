@@ -12,7 +12,7 @@ export default function Home() {
         <p className={styles.desc}>
           Grupo de Iniciação Científica de Florianópolis, Santa Catarina Buscando soluções sonoras para a sociedade de forma acessível.
         </p>
-        <button className={styles.button}>Saiba Mais <span className={styles.arrow}>→</span></button>
+        <button className={styles.button}>Saiba mais <span className={styles.arrow}>→</span></button>
       </div>
       <div className={styles.item}>
         {/* <Image src={LocalPossivelImagem} alt="LocalPossivelImagem" className={styles.img} /> */}
