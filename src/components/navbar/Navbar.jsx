@@ -18,7 +18,7 @@ const links = [
   },
   {
     id: 3,
-    title: 'Bibliotéca',
+    title: 'Biblioteca',
     url: '/library',
   },
   {

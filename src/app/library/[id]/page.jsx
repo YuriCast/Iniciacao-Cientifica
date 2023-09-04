@@ -3,7 +3,7 @@ import styles from './page.module.css'
 
 const LibraryPost = () => {
   return (
-    <div className={styles.container}>Postagem Bibliotéca</div>
+    <div className={styles.container}>Postagem Biblioteca</div>
   )
 }
 

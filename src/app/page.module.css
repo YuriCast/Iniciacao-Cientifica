@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+
 .container {
   display: flex;
   align-items: center;
@@ -16,13 +18,15 @@
 }
 
 .desc {
-  font-size: 18px;
+  font-size: 16px;
+  font-family: 'Poppins';
+  font-weight: 100;
 }
 
 .button {
   padding: 10px 16px;
   cursor: pointer;
-  background-color: #FD377E;
+  background-color: #E43397;
   border: none;
   border-radius: 4px;
   color: white;
