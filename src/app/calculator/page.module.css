@@ -29,12 +29,14 @@
     width: 500px;
     height: 650px;
     padding: 50px;
+    margin-left: 10px;
 }
 .item2 {
 
     width: 500px;
     height: 650px;
     padding: 50px;
+    margin-right: 10px;
 }
 
 .item1Text {
