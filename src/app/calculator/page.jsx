@@ -1,75 +1,65 @@
 "use client";
 import React, { useState } from "react";
 import styles from "./page.module.css";
-
 export default function Calculator() {
 
- // Estado para armazenar o valor inserido
- 
- const [modelValues, setModelValues] = useState({
+
+
+const [selectedModel, setSelectedModel] = useState("hanc");
+const [modelValues, setModelValues] = useState({
   param1: "",
   param2: "",
+  param3: "",
+  param4: "",
 });
-
-const [result, setResult] = useState('');
-
-const calcHanc = () => {
-  // Verifique se ambos os parâmetros são números antes de calcular
-  if (!isNaN(modelValues.param1) && !isNaN(modelValues.param2)) {
-    // Realize o cálculo específico para o modelo "Hanc"
-    const result =
-      68 + 8.5 * Math.log(parseFloat(modelValues.param1)) -
-      20 * Math.log(parseFloat(modelValues.param2));
-    setResult(result.toFixed(2)); // Arredonde o resultado para 2 casas decimais
-  } else {
-    setResult(''); // Se um dos parâmetros não for um número válido, limpe o resultado
-  }
-};
-const [selectedModel, setSelectedModel] = useState("hanc");
+const [result, setResult] = useState("");
 
 const handleModelChange = (event) => {
   const selectedOption = event.target.value;
   setSelectedModel(selectedOption);
-
-  // Aqui você pode fazer algo com a opção selecionada
-  if (selectedOption === "hanc") {
-    // Fazer algo quando "Hanc" estiver selecionado
-    
-  } else if (selectedOption === "johnson") {
-    // Fazer algo quando "Johnson" estiver selecionado
-  } else if (selectedOption === "galloway") {
-    // Fazer algo quando "Galloway" estiver selecionado
-  }
-  else if (selectedOption === "burgess") {
-    // Fazer algo quando "Galloway" estiver selecionado
-  }
-  else if (selectedOption === "griffiths") {
-    // Fazer algo quando "Galloway" estiver selecionado
-  }
-  else if (selectedOption === "fagotti") {
-    // Fazer algo quando "Galloway" estiver selecionado
-  }
-  else if (selectedOption === "bolt") {
-    // Fazer algo quando "Galloway" estiver selecionado
-  }
-  else if (selectedOption === "cstb") {
-    // Fazer algo quando "Galloway" estiver selecionado
-  }
-  
 };
 
 const handleInputChange = (event) => {
-  // Use o spread operator para atualizar apenas o campo relevante do estado
+  // Use the spread operator to update only the relevant field of the state
   setModelValues({
     ...modelValues,
     [event.target.name]: event.target.value,
   });
-
-  calcHanc(); // Chamar a função de cálculo quando o valor for alterado
 };
 
-  return (
-    <div className={styles.main}>
+// Call the calculation function when the component loads or when the input values change
+React.useEffect(() => {
+  calcHanc();
+}, [modelValues.param1, modelValues.param2]);
+
+ const calcJohnson = () => {
+  if ((this.state.param1) > 0 && (this.state.param2) > 0 && (this.state.param3) > 0) {
+      this.setState({ result: 3.5 + 10 * Math.log((parseFloat(this.state.param1) * Math.pow(parseFloat(this.state.param3), 3)) / parseFloat(this.state.param2)) })
+  }
+  else {
+      alert("Parâmetros não podem ser nulos")
+  }
+}
+
+ const calcHanc = () => {
+  // Verify if both parameters are numbers before calculating
+  if (!isNaN(modelValues.param1) && !isNaN(modelValues.param2)) {
+    // Perform the specific calculation for the "Hanc" model
+    const result =
+      68 +
+      8.5 * Math.log(parseFloat(modelValues.param1)) -
+      20 * Math.log(parseFloat(modelValues.param2));
+    setResult(result.toFixed(2)); // Round the result to 2 decimal places
+  } else {
+    setResult(""); // If one of the parameters is not a valid number, clear the result
+  }
+};
+
+
+
+
+return(
+     <div className={styles.main}>
       <div className={styles.container}>
         <div className={styles.item1}>
           <h1 className={styles.title}>Parâmetros</h1>
@@ -92,7 +82,7 @@ const handleInputChange = (event) => {
             <option value="cstb">CSTB</option>
           </select>
 
-          <p className={styles.item1Text}>Qtd. Veículos</p>
+          <p className={styles.item1Text} id="qtd_veiculos">Qtd. Veículos</p>
           <input
            type="text"
            name="param1"
@@ -101,7 +91,7 @@ const handleInputChange = (event) => {
             onChange={handleInputChange}
           />
 
-          <p className={styles.item1Text}>Distância</p>
+          <p className={styles.item1Text} id="distancia">Distância</p>
           <input 
           type="text"
           name="param2"
@@ -110,9 +100,12 @@ const handleInputChange = (event) => {
           onChange={handleInputChange}
           />
 
-          <p className={styles.item1Text}>Porcentagem</p>
+          <p className={styles.item1Text} id="porcentagem">Porcentagem</p>
           <input type="number" 
+          name="param3"
           className={`${styles.input}`} 
+          value={modelValues.param3}
+          onChange={handleInputChange}
           />
         </div>
 
