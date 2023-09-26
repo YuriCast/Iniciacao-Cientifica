@@ -3,68 +3,58 @@ import React, { useState, useEffect } from "react";
 import styles from "./page.module.css";
 
 export default function Calculator() {
-  const [qtd_veiculos, setQtd_veiculos] = useState(0);
+  const [qtd_veiculos, setQtd_veiculos] = useState();
+  const [distancia, setDistancia] = useState();
   const [selectedModel, setSelectedModel] = useState("hanc"); 
 
   const [modelValues, setModelValues] = useState({
-    qtd_veiculos: "",
-    distancia: "",
-    porcentagem: "",
+    param1: "",
+    param2: "",
+    param3: "",
+    param4: ""
   });
-
-  {selectedModel === "hanc" && (
-    <>
-      <p className={styles.item1Text}>Param1</p>
-      <input
-        type="number"
-        className={`${styles.input}`}
-        value={modelValues.param1}
-        onChange={(event) =>
-          setModelValues({ ...modelValues, param1: event.target.value })
-        }
-      />
-  
-      <p className={styles.item1Text}>Param2</p>
-      <input
-        type="number"
-        className={`${styles.input}`}
-        value={modelValues.param2}
-        onChange={(event) =>
-          setModelValues({ ...modelValues, param2: event.target.value })
-        }
-      />
-    </>
-  )}
+  const [result, setResult] = useState("");
 
   function updateModel (selectedModel) {
-    const modelStates = {
-      hanc: false,
-      johnson: false,
-      galloway: false,
-      burgess: false,
-      griffiths: false,
-      fagotti: false,
-      bolt: false,
-      cstb: false,
-    };
+    setSelectedModel(selectedModel);
+    if (selectedModel === "hanc") {
+      calcHanc();
+    }
+  }
   
-    modelStates[selectedModel] = true;
-  
-    this.setState({ ...modelStates });
-  };
-
   function calcHanc() {
   if (modelValues.param1 > 0 && modelValues.param2 > 0) {
-    // Realize o cálculo específico para o modelo "Hanc"
     const result =
       68 +
       8.5 * Math.log(parseFloat(modelValues.param1)) -
       20 * Math.log(parseFloat(modelValues.param2));
-    // Atualize o resultado no estado ou faça o que for necessário com o resultado
+      setResult(result.toFixed(2)); // Atualize o resultado no estado
   } else {
+    setResult(""); // Se um dos parâmetros não for um número válido, limpe o resultado
     alert("Parâmetros não podem ser nulos");
   }
 }
+
+function calcGalloway () {
+  if ((modelValues.param1) > 0 && (modelValues.param2) > 0 && (modelValues.param3) > 0 && (modelValues.param4) > 0) {
+      const result =
+      20 + 10 * 
+      Math.log((parseFloat(this.state.param1) * 
+      Math.pow(parseFloat(this.state.param3), 2)) / 
+      parseFloat(this.state.param2)) + 0.4 * 
+      parseFloat(this.state.param4)/100 
+  }
+  else {
+      alert("Parâmetros não podem ser nulos")
+  }
+}
+
+useEffect(() => {
+  if (selectedModel === "hanc") {
+    calcHanc();
+  }
+}, [selectedModel]);
+
 
   return (
     <div className={styles.main}>
@@ -97,12 +87,14 @@ export default function Calculator() {
             onChange={(event) => setQtd_veiculos(event.target.value)}
           />
 
-          <p className={styles.item1Text}>Distância</p>
+          <p className={styles.item1Text}>Distância (km)</p>
           <input type="number" 
           className={`${styles.input}`} 
+          value={distancia}
+          onChange={(event) => setDistancia(event.target.value)}
           />
 
-          <p className={styles.item1Text}>Porcentagem</p>
+          <p className={styles.item1Text}>Porcentagem de veículos pesados em tráfego</p>
           <input type="number" 
           className={`${styles.input}`} 
           />
@@ -113,8 +105,9 @@ export default function Calculator() {
           <p className={styles.item1Text}>L50</p>
           <input 
           type="number" 
+          value={result}
           className={`${styles.input}`} 
-          disabled 
+          readOnly 
           />
 
           <p className={styles.item2Text}>L90</p>
