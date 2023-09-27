@@ -18,6 +18,13 @@ export default function Calculator() {
   const handleModelChange = (event) => {
     const selectedOption = event.target.value;
     setSelectedModel(selectedOption);
+    // limpar os campos
+    setModelValues({
+      param1: "",
+      param2: "",
+      param3: "",
+      param4: ""
+    });
   };
 
   const handleInputChange = (event) => {
@@ -41,6 +48,20 @@ export default function Calculator() {
     }
   }
 
+
+  function calcJohnson() {
+    if ((modelValues.param1) > 0 && (modelValues.param2) > 0 && (modelValues.param3) > 0) {
+      const result =
+        3.5 + 10 *
+        Math.log((parseFloat(modelValues.param1) *
+          Math.pow(parseFloat(modelValues.param3), 3)) /
+          parseFloat(modelValues.param2))
+          setResult(result.toFixed(2)); // Atualize o resultado no estado
+    } else {
+      setResult("");
+    }
+  }
+
   function calcGalloway() {
     if ((modelValues.param1) > 0 && (modelValues.param2) > 0 && (modelValues.param3) > 0 && (modelValues.param4) > 0) {
       const result =
@@ -51,18 +72,6 @@ export default function Calculator() {
           parseFloat(modelValues.param4) / 100
     }
     else {
-      setResult("");
-    }
-  }
-
-  function calcJohnson() {
-    if ((modelValues.param1) > 0 && (modelValues.param2) > 0 && (modelValues.param3) > 0) {
-      const result =
-        3.5 + 10 *
-        Math.log((parseFloat(modelValues.param1) *
-          Math.pow(parseFloat(modelValues.param3), 3)) /
-          parseFloat(modelValues.param2))
-    } else {
       setResult("");
     }
   }
@@ -146,6 +155,17 @@ export default function Calculator() {
             <div>
               <p className={styles.item1Text}>Porcentagem de veículos pesados em tráfego</p>
               <input type="number"
+                name="param3"
+                className={`${styles.input}`}
+                value={modelValues.param3}
+                onChange={handleInputChange}
+              />
+            </div>
+          )}
+          {selectedModel === 'johnson' && (
+            <div> 
+               <p className={styles.item1Text}>Velocidade mediana dos veículos</p>
+               <input type="number"
                 name="param3"
                 className={`${styles.input}`}
                 value={modelValues.param3}
